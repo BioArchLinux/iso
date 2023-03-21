@@ -1,0 +1,47 @@
+## Official Website
+Server = https://repo.bioarchlinux.org/$arch
+
+## Australia
+### xTom
+# Server = https://mirrors.xtom.au/bioarchlinux/$arch
+
+## China
+### ISCAS
+# Server = https://mirror.iscas.ac.cn/BioArchLinux/$arch
+### Nanjing University
+# Server = http://mirror.nju.edu.cn/bioarchlinux/$arch
+# Server = https://mirror.nju.edu.cn/bioarchlinux/$arch
+### Nanjing University of Posts and Telecommunications
+# Server = http://mirrors.njupt.edu.cn/bioarchlinux/$arch
+# Server = https://mirrors.njupt.edu.cn/bioarchlinux/$arch
+### Shandong University
+# Server = http://mirrors.sdu.edu.cn/bioarchlinux/$arch
+# Server = https://mirrors.sdu.edu.cn/bioarchlinux/$arch
+### Xi'an Jiaotong University
+# Server = https://mirrors.xjtu.edu.cn/bioarchlinux/$arch
+
+## China (HongKong)
+### xTom
+# Server = https://mirrors.xtom.hk/bioarchlinux/$arch
+
+## Estonia
+### xTom
+# Server = https://mirrors.xtom.ee/bioarchlinux/$arch
+
+## Germany
+### sunred
+# Server = https://mirror.sunred.org/bioarchlinux/$arch
+### xTom
+# Server = https://mirrors.xtom.de/bioarchlinux/$arch
+
+## Japan
+### xTom
+# Server = https://mirrors.xtom.jp/bioarchlinux/$arch
+
+## Netherland
+### xTom
+# Server = https://mirrors.xtom.nl/bioarchlinux/$arch
+
+## United States
+### xTom
+# Server = https://mirrors.xtom.com/bioarchlinux/$arch

@@ -1,0 +1,9 @@
+[Unit]
+Description=iso image generator
+Wants=iso.timer
+
+[Service]
+User=root
+Type=simple
+ExecStart=/usr/share/lilac/iso/gen_iso.sh
+
