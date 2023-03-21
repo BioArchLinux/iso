@@ -1,4 +1,6 @@
 #!/bin/bash
+# Update
+cd /usr/share/lilac/iso && git pull
 # Run
 docker run  -itd --privileged --name bio bioarchlinux/bioarchlinux /bin/bash
 # System
