@@ -1,4 +1,4 @@
-# BioArchLinux on WSL
+# BioArchLinux repo iso
 
 ## Download
 
