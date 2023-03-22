@@ -1,4 +1,6 @@
-# BioArchLinux repo iso
+# BioArchLinux ISO
+
+![](https://raw.githubusercontent.com/BioArchLinux/iso/master/screenshot.png)
 
 ## Download
 
@@ -67,5 +69,5 @@ You can use the `pacman.conf` from live cd, or you should manually add `bioarchl
 
 ## Configure the system, Reboot & Post-installation
 
-You can view a[rchlinux wiki](https://wiki.archlinux.org/title/Installation_guide), totally the same as Arch Linux.
+You can view [archlinux wiki](https://wiki.archlinux.org/title/Installation_guide), totally the same as Arch Linux.
 
