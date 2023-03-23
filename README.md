@@ -55,7 +55,7 @@ you can edit `/etc/pacman.d/mirrorlist` and `/etc/pacman.d/mirrorlist.bio`, and 
 The example commands will let you use the Linux kernel, you can replace it with other kernels.
 
 ```
-# pacstrap -K /mnt base-bio linux linux-firmware
+# pacstrap /mnt base-bio linux linux-firmware
 ```
 
 ### pacman.conf
