@@ -34,7 +34,7 @@ Following commands format the boot partition as fas, the root partition as ext4.
 
 ```
 # mkfs.ext4 /dev/root_partition
-# mkfs.fas /dev/boot_partition
+# mkfs.fat /dev/boot_partition
 ```
 
 ### Mount
