@@ -1,0 +1,117 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 35,
+    "spacing": 4,
+    "mode": "dock",
+    "margin-top": 0,
+    "margin-bottom": 0,
+
+    // Choose the order of the modules
+    "modules-left":[  "custom/launcher", "cpu", "memory", "custom/update"],
+    "modules-center": [  "clock" ],
+    "modules-right":[ "tray", "battery", "pulseaudio", "network", "bluetooth", "custom/power"],
+    
+    // Modules configuration
+     "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 23,
+	"icon-theme": "Tela",
+        "tooltip-format": "{title}",
+        "on-click": "minimize",
+        "on-click-middle": "close",
+        "on-click-right": "activate",
+	"app_ids-mapping": {
+		"blueberry.py": "blueberry",
+		"au-org-ala-delta-editor-DeltaEditor": "delta",
+		"evince": "org.gnome.Evince",
+		"org.jabref.gui.JabRefMain": "jabref",
+		"FortiClient": "forticlient",
+		"Mega": "mega",
+		"com-ggvaidya-TaxonDNA-SequenceMatrix-SequenceMatrix": "java",
+		"tpsdig2.exe": "tpsDig",
+		"tpsutil.exe": "tpsUtil",
+		"winclada.exe": "winclada",
+		"fr.greyc.gmic_qt": "Gimp-2.10"
+	}
+    },
+    "tray": {
+        "icon-size": 22,
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	"format": "{:%Y-%m-%d %H:%M}"
+    },
+    "cpu": {
+        "format": "{usage:1}% CPU",
+        "tooltip": false,
+	"on-click": "tilix -e 'htop'" 
+    },
+    "memory": {
+        "format": "{percentage:1}% RAM",
+	"on-click": "tilix -e 'htop'"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󱐋",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "{essid:5} ",
+        "format-ethernet": "Connected  ",
+        "format-linked": "{ifname:5} (No IP) 󰛳",
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "tilix -e 'nmtui'"
+
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "on-click": "blueberry",
+        "tooltip-format": "{}"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "{icon} {format_source}",
+        "format-muted": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+	"on-click": "pavucontrol"
+    },
+    "custom/launcher":{
+        "format": "󰻀",
+        "on-click": "nwggrid",
+        "on-click-right": "killall nwggrid"
+    },
+    "custom/update":{
+        "format": "{} ",
+	"interval": 60,
+	"exec": "checkupdates | wc -l",
+	"exec-if": "checkupdates; exit 0",
+        "on-click": "tilix -e \"$HOME/.config/waybar/update.sh\"; pkill -SIGRTMIN+8 waybar",
+	"signal": 8
+    },
+    "custom/power":{
+        "format": "⏻",
+	"on-click": "nwgbar"
+    },
+}
+

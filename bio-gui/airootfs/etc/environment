@@ -1,0 +1,13 @@
+GTK_USE_PORTAL=0
+LIBSEAT_BACKEND=logind
+
+GTK_THEME=Graphite-Dark
+QT_STYLE_OVERRIDE=kvantum
+
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+INPUT_METHOD=fcitx
+
+EDITOR=vim

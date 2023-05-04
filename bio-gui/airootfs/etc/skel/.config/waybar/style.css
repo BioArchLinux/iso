@@ -1,0 +1,60 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: JetBrains Mono, Cantarell, Arial;
+    font-size: 15px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #2c2c2c;
+    color: white;
+    transition-property: background-color;
+    transition-duration: .5s;
+    opacity: 0.7;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0px;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0px;
+}
+
+#mode,
+#clock,
+#custom-launcher,
+#custom-power,
+#custom-update,
+#battery,
+#bluetoth,
+#cpu,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#taskbar,
+#tray{
+    padding: 0 10px;
+    color: white;
+}
+
+#custom-power{
+    font-size: 18px;
+}
+
+#custom-update,
+#custom-launcher{
+    font-size: 17px;
+}
+
+#battery.critical:not(.charging) {
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}

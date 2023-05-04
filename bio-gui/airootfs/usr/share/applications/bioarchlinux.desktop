@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+TryExec=nwggrid
+Exec=nwggrid
+Icon=bioarchlinux-logo
+Terminal=false
+Categories=System
+Name=BioArchMenu
+GenericName=BioArchMenu
+NoDisplay=true
+Comment=A menu

@@ -1,0 +1,10 @@
+NAME="BioArchLinux"
+PRETTY_NAME="BioArchLinux"
+ID=bioarch
+BUILD_ID=rolling
+ANSI_COLOR="1;37;44"
+HOME_URL="https://bioarchlinux.org/"
+DOCUMENTATION_URL="https://wiki.bioarchlinux.org/"
+SUPPORT_URL="https://matrix.to/#/#bioarchlinux:matrix.org"
+BUG_REPORT_URL="https://github.com/BioArchLinux/Packages"
+LOGO=bioarchlinux-logo

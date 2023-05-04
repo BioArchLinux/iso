@@ -1,0 +1,8 @@
+root:x:0:root
+adm:x:4:bio
+wheel:x:10:bio
+uucp:x:14:bio
+nopasswdlogin:x:966:bio
+rfkill:x:983:bio
+sys:x:3:bin,bio
+bio:x:1000:bio
