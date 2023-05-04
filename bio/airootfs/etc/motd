@@ -1,12 +1,32 @@
-To install [38;2;23;147;209mBioArchLinux[0m follow the installation guide:
-https://wiki.archlinux.org/title/Installation_guide
-Replace thw word base with the word base-bio
+To install [1;37;44mBioArchLinux[0m follow the installation guide:
+https://github.com/BioArchLinux/iso
 
-For Wi-Fi, authenticate to the wireless network using the [35miwctl[0m utility.
-For mobile broadband (WWAN) modems, connect with the [35mmmcli[0m utility.
-Ethernet, WLAN and WWAN interfaces using DHCP should work automatically.
+Official website: https://bioarchlinux.org
 
-After connecting to the internet, the installation guide can be accessed
-via the convenience script [35mInstallation_guide[0m.
+Report ISO issues: https://github.com/BioArchLinux/iso/issues
+Chat on matrix: https://matrix.to/#/#bioarchlinux:matrix.org
+Usage Wiki page: https://wiki.bioarchlinux.org/index.php?title=Special:AllPages
 
-[41m [41m [41m [40m [44m [40m [41m [46m [45m [41m [46m [43m [41m [44m [45m [40m [44m [40m [41m [44m [41m [41m [46m [42m [41m [44m [43m [41m [45m [40m [40m [44m [40m [41m [44m [42m [41m [46m [44m [41m [46m [47m [0m
+                    .                   
+                   lN.                  
+                  ;MMX                  
+                 'WMMMK                 
+                .WMMMMM0                
+                dMMMMMMM0               
+              .NOoONMMMMM0              
+             .WMMMMWMMMMMMK             
+            ,WMMMMMMMMMMMMMX.           
+           ;MMMMMMMMMMMMMMMMN.          
+          lMMMMMMMOc:oXMMMMMMW.         
+         dMMMMMMW,     xMMMMMMW,        
+        kMMMMMMMo       XMMMMWMM:       
+       0MMMMMMMM,  ,..  xMMMMMKko.      
+     .XMMMMMMWKk'  ox'  lOXMMMMMM0:     
+    'WMMNkl'.     .x:d      .;d0WMMO    
+   :Xx:.           cx'           'l0K.  
+   .                                 .  
+
+
+          Welcome to [1;37;44mBioArchLinux[0m !
+
+  [41m [41m [41m [40m [44m [40m [41m [46m [45m [41m [46m [43m [41m [44m [45m [40m [44m [40m [41m [44m [41m [41m [46m [42m [41m [44m [43m [41m [45m [40m [40m [44m [40m [41m [44m [42m [41m [46m [44m [41m [46m [47m [0m
