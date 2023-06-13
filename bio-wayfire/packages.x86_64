@@ -175,3 +175,6 @@ htop
 light
 # pkg manager
 yay
+# iso
+calamares-config
+calamares
