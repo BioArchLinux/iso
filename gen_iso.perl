@@ -77,7 +77,7 @@ sub use_mkarchiso {
 
 sub use_mkarchiso_bt {
     my ($subdir, $iso_name, $dest_dir) = @_;
-    my $iso_filename = "${iso_name}-bootstrap" . `date "+%Y.%m.%d"` . "-x86_64.tar.gz";
+    my $iso_filename = "${iso_name}-bootstrap-" . `date "+%Y.%m.%d"` . "-x86_64.tar.gz";
     $iso_filename =~ s/[^\x20-\x7E]//g;
     chomp($iso_filename);
     system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/$subdir && mkarchiso -C pacman.conf -m bootstrap -v .");
