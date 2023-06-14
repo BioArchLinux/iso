@@ -121,7 +121,7 @@ sub move_files {
 ### Main Function ###
 
 my $abpath = '/usr/share/lilac/iso';
-my $cdpath = '/usr/share/lilac/Repo/iso'
+my $cdpath = '/usr/share/lilac/Repo/iso';
 
 # Update
 update_iso_directory( $abpath );
