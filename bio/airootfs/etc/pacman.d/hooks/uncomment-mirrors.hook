@@ -11,3 +11,4 @@ When = PostTransaction
 Depends = pacman-mirrorlist
 Depends = sed
 Exec = /usr/bin/sed -i "s/#Server/Server/g" /etc/pacman.d/mirrorlist
+Exec = /usr/bin/sed -i "s/#Server/Server/g" /etc/pacman.d/mirrorlist.bio

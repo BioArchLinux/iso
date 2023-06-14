@@ -5,5 +5,5 @@ Wants=iso.timer
 [Service]
 User=root
 Type=simple
-ExecStart=/usr/share/lilac/iso/gen_iso.sh
+ExecStart=/usr/bin/perl /usr/share/lilac/iso/gen_iso.perl
 

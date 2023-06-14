@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
-iso_name="bioarchlinux"
+iso_name="bioarchlinux-wayfire"
 iso_label="ARCH_$(date +%Y%m)"
 iso_publisher="BioArchLinux <https://bioarchlinux.org>"
 iso_application="BioArchLinux Live/Rescue CD"

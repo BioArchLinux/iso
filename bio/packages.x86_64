@@ -1,3 +1,4 @@
+# default package
 alsa-utils
 amd-ucode
 arch-install-scripts
@@ -33,7 +34,7 @@ gnu-netcat
 gpart
 gpm
 gptfdisk
-grml-zsh-config
+#grml-zsh-config
 grub
 hdparm
 hyperv
@@ -111,7 +112,6 @@ udftools
 usb_modeswitch
 usbmuxd
 usbutils
-vim
 virtualbox-guest-utils-nox
 vpnc
 wireless-regdb
@@ -121,3 +121,7 @@ wvdial
 xfsprogs
 xl2tpd
 zsh
+
+# pkg manager
+yay
+pacman-contrib

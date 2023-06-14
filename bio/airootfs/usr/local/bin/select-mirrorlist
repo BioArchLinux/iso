@@ -1,0 +1,4 @@
+#!/bin/bash
+mv /etc/pacman.d/mirrorlist.bio /etc/pacman.d/mirrorlist.bio.pacnew
+rankmirrors /etc/pacman.d/mirrorlist.bio.pacnew -r bioarchlinux >> /etc/pacman.d/mirrorlist.bio
+sed -i '/^#/d' /etc/pacman.d/mirrorlist.bio

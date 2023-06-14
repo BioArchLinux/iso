@@ -168,13 +168,13 @@ adobe-source-han-sans-kr-fonts
 ttf-nerd-fonts-symbols
 ## waybar
 waybar
-pacman-contrib
 blueberry
 pavucontrol
 htop
 light
 # pkg manager
 yay
+pacman-contrib
 # iso
 calamares-config
 calamares
