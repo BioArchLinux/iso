@@ -44,11 +44,11 @@ sub prepare_files {
         }
     }
     close($fh);
-    open($fh, '>', $src_path . '/bio/airootfs/etc/pacman.d/mirrorlist') or die "Can't write mirrorlist file: $!";
+    open($fh, '>', $src_path . '/mirrorlist') or die "Can't write mirrorlist file: $!";
     print $fh @mirrorlist_lines;
     close($fh);
     # transfer mirrorlist 
-    system('docker', 'cp', $src_path . 'mirrorlist' , "bio:/root/bio/airootfs/etc/pacman.d/");
+    system('docker', 'cp', $src_path . '/mirrorlist' , "bio:/root/bio/airootfs/etc/pacman.d/");
     # clean mirrorlist
     system('rm', $src_path . 'mirrorlist');
 
