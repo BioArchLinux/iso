@@ -28,7 +28,7 @@ sub prepare_files {
     my ($src_path) = @_;
 
     # Download bio mirrorlist file
-    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/etc/pacman.d && curl -L -o mirrorlist.bio https://raw.githubusercontent.com/BioArchLinux/mirror/main/mirrorlist.bio")
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/etc/pacman.d && curl -L -o mirrorlist.bio https://raw.githubusercontent.com/BioArchLinux/mirror/main/mirrorlist.bio");
 
    # Download mirrorlist file
     system('curl', '-L', '-o', $src_path . 'mirrorlist' , 'https://gitlab.archlinux.org/archlinux/packaging/packages/pacman-mirrorlist/-/raw/main/mirrorlist'); 
@@ -48,13 +48,13 @@ sub prepare_files {
     print $fh @mirrorlist_lines;
     close($fh);
     # transfer mirrorlist 
-    system('docker', 'cp', $src_path . 'mirrorlist' , "bio:/root/bio/airootfs/etc/pacman.d/")
+    system('docker', 'cp', $src_path . 'mirrorlist' , "bio:/root/bio/airootfs/etc/pacman.d/");
     # clean mirrorlist
-    system('rm', $src_path . 'mirrorlist')
+    system('rm', $src_path . 'mirrorlist');
 
     # Download keyring files
-    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/usr/share/pacman/keyrings && curl -L -o bioarchlinux-trusted https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux-trusted")
-    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/usr/share/pacman/keyrings && curl -L -o bioarchlinux.gpg https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux.gpg")
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/usr/share/pacman/keyrings && curl -L -o bioarchlinux-trusted https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux-trusted");
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/usr/share/pacman/keyrings && curl -L -o bioarchlinux.gpg https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux.gpg");
 
     # Copy pacman.conf file
     system('docker', 'exec', '-i', 'bio', 'sh', '-c',  "cp ${src_path}/bio/pacman.conf ${src_path}/bio/airootfs/etc/");
