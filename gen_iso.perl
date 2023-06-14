@@ -6,6 +6,7 @@ use warnings;
 sub update_iso_directory {
     my ($directory_path) = @_;
     chdir($directory_path);
+    system('git' 'checkout' '.');
     system('git', 'pull');
 }
 
