@@ -152,17 +152,17 @@ copy_template_files( '/root/bio', '/root/bio-wayfire');
 # Use mkarchiso
 use_mkarchiso('bio', 'bioarchlinux', $abpath);
 use_mkarchiso('bio-wayfire', 'bioarchlinux-wayfire', $abpath);
-use_mkarchiso_bt('bio', 'bioarchlinux', $abpath);
+#use_mkarchiso_bt('bio', 'bioarchlinux', $abpath);
 
 # GPG Sign
 gpg_sign( $abpath . '/bioarchlinux-' . `date "+%Y.%m.%d"` . '-x86_64.iso');
 gpg_sign( $abpath . '/bioarchlinux-wayfire-' . `date "+%Y.%m.%d"` . '-x86_64.iso');
-gpg_sign( $abpath . '/bioarchlinux-bootstrap-' . `date "+%Y.%m.%d"` . '-x86_64.tar.gz');
+#gpg_sign( $abpath . '/bioarchlinux-bootstrap-' . `date "+%Y.%m.%d"` . '-x86_64.tar.gz');
 
 # Sum sign
 sum_sign( $abpath . '/bioarchlinux-' . `date "+%Y.%m.%d"` . '-x86_64.iso');
 sum_sign( $abpath . '/bioarchlinux-wayfire-' . `date "+%Y.%m.%d"` . '-x86_64.iso');
-sum_sign( $abpath . '/bioarchlinux-bootstrap-' . `date "+%Y.%m.%d"` . '-x86_64.tar.gz');
+#sum_sign( $abpath . '/bioarchlinux-bootstrap-' . `date "+%Y.%m.%d"` . '-x86_64.tar.gz');
 
 # Clean system
 clean_system();
