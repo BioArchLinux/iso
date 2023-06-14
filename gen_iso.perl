@@ -21,7 +21,8 @@ sub system_setup {
 
 sub transfer_docker {
    my ($subdir, $dest_dir) = @_;
-   system('docker', 'cp', $dest_dir . '/' . $subdir, "bio:/root/");
+   my $path = $dest_dir . $subdir;
+   system('docker', 'cp', $path, "bio:/root/");
 }
 
 sub prepare_files {
@@ -139,8 +140,8 @@ run_docker_container();
 system_setup();
 
 # transfer
-transfer_docker('bio', $abpath);
-transfer_docker('bio-wayfire', $abpath);
+transfer_docker('/bio', $abpath);
+transfer_docker('/bio-wayfire', $abpath);
 
 # Call prepare_files function before copying templates
 prepare_files( $abpath );
