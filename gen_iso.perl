@@ -146,7 +146,7 @@ transfer_docker('bio-wayfire', $abpath);
 prepare_files( $abpath );
 
 # Copy template files
-copy_template_files( 'bio:/root/bio', 'bio:/root/bio-wayfire');
+copy_template_files( '/root/bio', '/root/bio-wayfire');
 
 # Use mkarchiso
 use_mkarchiso('bio', 'bioarchlinux', $abpath);
