@@ -9,18 +9,32 @@ sub update_iso_directory {
     system('git', 'pull');
 }
 
+sub run_docker_container {
+    system('docker', 'run', '-itd', '--privileged', '--name', 'bio', 'bioarchlinux/bioarchlinux', '/bin/bash');
+}
+
+sub system_setup {
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'ln -sf /usr/share/zoneinfo/GMT /etc/localtime');
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'pacman -Syu --noconfirm');
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'pacman -S archiso rsync --noconfirm');
+}
+
+sub transfer_docker {
+   my ($subdir, $dest_dir) = @_;
+   system('docker', 'cp', $dest_dir . $subdir, "bio:/root/");
+}
+
 sub prepare_files {
     my ($src_path) = @_;
 
     # Download bio mirrorlist file
-    system('curl', '-L', '-o', $src_path . '/bio/airootfs/etc/pacman.d/mirrorlist.bio', 'https://raw.githubusercontent.com/BioArchLinux/mirror/main/mirrorlist.bio');
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/etc/pacman.d && curl -L -o mirrorlist.bio https://raw.githubusercontent.com/BioArchLinux/mirror/main/mirrorlist.bio")
 
-    # Download mirrorlist file
-    system('curl', '-L', '-o', $src_path . '/bio/airootfs/etc/pacman.d/mirrorlist', 'https://gitlab.archlinux.org/archlinux/packaging/packages/pacman-mirrorlist/-/raw/main/mirrorlist');
-
+   # Download mirrorlist file
+    system('curl', '-L', '-o', $src_path . 'mirrorlist' , 'https://gitlab.archlinux.org/archlinux/packaging/packages/pacman-mirrorlist/-/raw/main/mirrorlist'); 
     # Uncomment Worldwide mirrors
     my @mirrorlist_lines = ();
-    open(my $fh, '<', $src_path . '/bio/airootfs/etc/pacman.d/mirrorlist') or die "Can't open mirrorlist file: $!";
+    open(my $fh, '<', $src_path . 'mirrorlist') or die "Can't open mirrorlist file: $!";
     while (my $line = <$fh>) {
         if ($line =~ /^## Worldwide/) {
             push @mirrorlist_lines, $line;
@@ -33,28 +47,22 @@ sub prepare_files {
     open($fh, '>', $src_path . '/bio/airootfs/etc/pacman.d/mirrorlist') or die "Can't write mirrorlist file: $!";
     print $fh @mirrorlist_lines;
     close($fh);
+    # transfer mirrorlist 
+    system('docker', 'cp', $src_path . 'mirrorlist' , "bio:/root/bio/airootfs/etc/pacman.d/")
+    # clean mirrorlist
+    system('rm', $src_path . 'mirrorlist')
 
     # Download keyring files
-    system('curl', '-L', '-o', $src_path . '/bio/airootfs/usr/share/pacman/keyrings/bioarchlinux-trusted', 'https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux-trusted');
-    system('curl', '-L', '-o', $src_path . '/bio/airootfs/usr/share/pacman/keyrings/bioarchlinux.gpg', 'https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux.gpg');
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/usr/share/pacman/keyrings && curl -L -o bioarchlinux-trusted https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux-trusted")
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/usr/share/pacman/keyrings && curl -L -o bioarchlinux.gpg https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux.gpg")
 
     # Copy pacman.conf file
-    system('cp', $src_path . '/bio/pacman.conf', $src_path . '/bio/airootfs/etc/');
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c',  "cp ${src_path}/bio/pacman.conf ${src_path}/bio/airootfs/etc/");
 }
 
 sub copy_template_files {
     my ($src, $dst) = @_;
-    system('rsync', '-a', '--links', '--ignore-existing', "$src/", "$dst/");
-}
-
-sub run_docker_container {
-    system('docker', 'run', '-itd', '--privileged', '--name', 'bio', 'bioarchlinux/bioarchlinux', '/bin/bash');
-}
-
-sub system_setup {
-    system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'ln -sf /usr/share/zoneinfo/GMT /etc/localtime');
-    system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'pacman -Syu --noconfirm');
-    system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'pacman -S archiso --noconfirm');
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', "rsync -a --links --ignore-existing $src/ $dst/");
 }
 
 sub use_mkarchiso {
@@ -62,7 +70,6 @@ sub use_mkarchiso {
     my $iso_filename = "${iso_name}-" . `date "+%Y.%m.%d"` . "-x86_64.iso";
     $iso_filename =~ s/[^\x20-\x7E]//g;
     chomp($iso_filename);
-    system('docker', 'cp', $dest_dir . $subdir, "bio:/root/");
     system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/$subdir && mkarchiso -C pacman.conf -v .");
     system('docker', 'cp', "bio:/root/" . ${subdir} . "/out/". ${iso_filename}, $dest_dir);
 }
@@ -72,15 +79,8 @@ sub use_mkarchiso_bt {
     my $iso_filename = "${iso_name}-bootstrap" . `date "+%Y.%m.%d"` . "-x86_64.tar.gz";
     $iso_filename =~ s/[^\x20-\x7E]//g;
     chomp($iso_filename);
-    system('docker', 'cp', $dest_dir . $subdir, "bio:/root/");
     system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/$subdir && mkarchiso -C pacman.conf -m bootstrap -v .");
     system('docker', 'cp', "bio:/root/" . ${subdir} . "/out/". ${iso_filename}, $dest_dir);
-}
-
-sub clean_system {
-    system('docker', 'stop', 'bio');
-    system('docker', 'rm', 'bio');
-    system('docker', 'rmi', '--force', 'bioarchlinux/bioarchlinux');
 }
 
 sub gpg_sign {
@@ -99,6 +99,12 @@ sub sum_sign {
         my $sum_file = "$file_path.$cmd";
         system("$cmd $file_path > \"$sum_file\"");
     }
+}
+
+sub clean_system {
+    system('docker', 'stop', 'bio');
+    system('docker', 'rm', 'bio');
+    system('docker', 'rmi', '--force', 'bioarchlinux/bioarchlinux');
 }
 
 sub remove_files {
@@ -126,25 +132,26 @@ my $cdpath = '/usr/share/lilac/Repo/iso';
 # Update
 update_iso_directory( $abpath );
 
-# Call prepare_files function before copying templates
-prepare_files( $abpath );
-
-# Copy template files
-copy_template_files( $abpath . '/bio', $abpath . '/bio-wayfire');
-
 # Run
 run_docker_container();
 
 # System
 system_setup();
 
+# transfer
+transfer_docker('bio', $abpath);
+transfer_docker('bio-wayfire', $abpath);
+
+# Call prepare_files function before copying templates
+prepare_files( $abpath );
+
+# Copy template files
+copy_template_files( 'bio:/root/bio', 'bio:/root/bio-wayfire');
+
 # Use mkarchiso
 use_mkarchiso('bio', 'bioarchlinux', $abpath);
 use_mkarchiso('bio-wayfire', 'bioarchlinux-wayfire', $abpath);
 use_mkarchiso_bt('bio', 'bioarchlinux', $abpath);
-
-# Clean system
-clean_system();
 
 # GPG Sign
 gpg_sign( $abpath . '/bioarchlinux-' . `date "+%Y.%m.%d"` . '-x86_64.iso');
@@ -155,6 +162,9 @@ gpg_sign( $abpath . 'bioarchlinux-bootstrap-' . `date "+%Y.%m.%d"` . '-x86_64.ta
 sum_sign( $abpath . '/bioarchlinux-' . `date "+%Y.%m.%d"` . '-x86_64.iso');
 sum_sign( $abpath . '/bioarchlinux-wayfire-' . `date "+%Y.%m.%d"` . '-x86_64.iso');
 sum_sign( $abpath . 'bioarchlinux-bootstrap-' . `date "+%Y.%m.%d"` . '-x86_64.tar.gz');
+
+# Clean system
+clean_system();
 
 # Remove
 remove_files( $cdpath );
