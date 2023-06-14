@@ -51,7 +51,7 @@ sub prepare_files {
     # transfer mirrorlist 
     system('docker', 'cp', $src_path . '/mirrorlist' , "bio:/root/bio/airootfs/etc/pacman.d/");
     # clean mirrorlist
-    system('rm', $src_path . 'mirrorlist');
+    system('rm', $src_path . '/mirrorlist');
 
     # Download keyring files
     system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/usr/share/pacman/keyrings && curl -L -o bioarchlinux-trusted https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux-trusted");
