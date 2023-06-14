@@ -88,7 +88,7 @@ sub gpg_sign {
     my ($file_path) = @_;
     $file_path =~ s/[^\x20-\x7E]//g;
     chomp($file_path);
-    system('gpg', '--output', $file_path . '.sig', '--sign', $file_path);
+    system('gpg', '--output', $file_path . '.sig', '--detach-sig', $file_path);
 }
 
 sub sum_sign {
