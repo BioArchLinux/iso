@@ -5,7 +5,9 @@ arch-install-scripts
 archinstall
 b43-fwcutter
 base
+bcachefs-tools
 bind
+bolt
 brltty
 broadcom-wl
 btrfs-progs
@@ -14,7 +16,6 @@ cloud-init
 cryptsetup
 darkhttpd
 ddrescue
-dhclient
 dhcpcd
 diffutils
 dmidecode
@@ -29,12 +30,12 @@ ethtool
 exfatprogs
 f2fs-tools
 fatresize
+foot-terminfo
 fsarchiver
-gnu-netcat
 gpart
 gpm
 gptfdisk
-#grml-zsh-config
+grml-zsh-config
 grub
 hdparm
 hyperv
@@ -44,6 +45,7 @@ iw
 iwd
 jfsutils
 kitty-terminfo
+ldns
 less
 lftp
 libfido2
@@ -78,6 +80,7 @@ nvme-cli
 open-iscsi
 open-vm-tools
 openconnect
+openpgp-card-tools
 openssh
 openvpn
 partclone
@@ -90,12 +93,12 @@ pv
 qemu-guest-agent
 refind
 reflector
-
 rp-pppoe
 rsync
 rxvt-unicode-terminfo
 screen
 sdparm
+sequoia-sq
 sg3_utils
 smartmontools
 sof-firmware
@@ -107,11 +110,13 @@ tcpdump
 terminus-font
 testdisk
 tmux
+tpm2-tools
 tpm2-tss
 udftools
 usb_modeswitch
 usbmuxd
 usbutils
+vim
 virtualbox-guest-utils-nox
 vpnc
 wireless-regdb
