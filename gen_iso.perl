@@ -17,7 +17,7 @@ sub run_docker_container {
 sub system_setup {
     system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'ln -sf /usr/share/zoneinfo/GMT /etc/localtime');
     system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'pacman -Syu --noconfirm');
-    system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'pacman -S archiso rsync --noconfirm');
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c', 'pacman -S archiso rsync grub --noconfirm');
 }
 
 sub transfer_docker {
