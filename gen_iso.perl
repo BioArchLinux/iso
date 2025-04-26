@@ -58,7 +58,7 @@ sub prepare_files {
     system('docker', 'exec', '-i', 'bio', 'sh', '-c', "cd /root/bio/airootfs/usr/share/pacman/keyrings && curl -L -o bioarchlinux.gpg https://raw.githubusercontent.com/BioArchLinux/keyring/main/bioarchlinux.gpg");
 
     # Copy pacman.conf file
-    system('docker', 'exec', '-i', 'bio', 'sh', '-c',  "cp ${src_path}/bio/pacman.conf ${src_path}/bio/airootfs/etc/");
+    system('docker', 'exec', '-i', 'bio', 'sh', '-c',  "cp /root/bio/pacman.conf /root/bio/airootfs/etc/");
 }
 
 sub copy_template_files {
